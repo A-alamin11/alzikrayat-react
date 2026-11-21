@@ -1,0 +1,2 @@
+import{useEffect,useState}from"react";import{Link}from"react-router-dom";
+export default function Home(){const[photos,setPhotos]=useState([]);useEffect(()=>{fetch("http://localhost:5001/api/photos").then(r=>r.json()).then(setPhotos)},[]);return <><h1>Alzikrayat Photo Gallery</h1><p>{photos.length} photos shared</p><div className="grid">{photos.map(p=><article key={p._id}><img src={`http://localhost:5001/uploads/${p.fileName}`}/><h2>{p.title}</h2><small>By {p.userId?.firstName}</small><Link to={`/photo/${p._id}`}>View details</Link></article>)}</div></>}
